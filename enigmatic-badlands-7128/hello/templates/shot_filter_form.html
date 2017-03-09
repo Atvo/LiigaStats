@@ -1,0 +1,239 @@
+<form method="POST" id="shot_filter_form">
+{% csrf_token %}
+<div class="row">
+  <div class="form-group col-xs-12 col-sm-3 col-md-2">
+    <label for="season_filter">Season</label>
+    <select id="season_filter" class="shot_filter form-control" name="season">
+      <option value='All'>All</option>
+      {% for season in seasons %}
+      {% if season == selected_season %}
+      <option value="{{season}}" selected>{{season}}</option>
+      {% else %}
+      <option value="{{season}}">{{season}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group col-xs-12 col-sm-4 col-md-2">
+    <label for="shooting_team_filter">Team:</label>
+    <select id="shooting_team_filter" class="shot_filter form-control" name="team">
+      <option value='All'>All</option>
+      {% for team in teams %}
+      {% if team == selected_team %}
+      <option value="{{team}}" selected>{{team}}</option>
+      {% else %}
+      <option value="{{team}}">{{team}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group col-xs-12 col-sm-5 col-md-3">
+    <label for="shooter_filter">Player:</label>
+    <select id="shooter_filter" class="shot_filter form-control" name="shooter">
+      <option value='All'>All</option>
+      {% for player in players %}
+      {% if player == selected_shooter %}
+      <option value="{{player}}" selected>{{player}}</option>
+      {% else %}
+      <option value="{{player}}">{{player}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-xs-12 col-sm-5 col-md-2">
+    <label>Outcome:</label>
+    <div class="row">
+      <div class="checkbox-inline shot_filter col-xs-offset-1">
+        <label>
+          {% if goal_checked %}
+          <input type="checkbox" value="goal" id="goal_chx" checked>
+          {% else %}
+          <input type="checkbox" value="goal" id="goal_chx">
+          {% endif %}
+          Goal
+        </label>
+      </div>
+      <div class="checkbox-inline shot_filter">
+        <label>
+          {% if save_checked %}
+          <input type="checkbox" value="save" id="save_chx" checked>
+          {% else %}
+          <input type="checkbox" value="save" id="save_chx">
+          {% endif %}
+          Save
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="checkbox-inline shot_filter col-xs-offset-1">
+        <label>
+          {% if miss_checked %}
+          <input type="checkbox" value="miss" id="miss_chx" checked>
+          {% else %}
+          <input type="checkbox" value="miss" id="miss_chx">
+          {% endif %}
+          Miss
+        </label>
+      </div>
+      <div class="checkbox-inline shot_filter">
+        <label>
+          {% if block_checked %}
+          <input type="checkbox" value="block" id="block_chx" checked>
+          {% else %}
+          <input type="checkbox" value="block" id="block_chx">
+          {% endif %}
+          Block
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" value="Submit" style="margin-top:25px;">
+
+
+</div>
+
+<div class="row"  id="advanced_filters">
+  <div class="checkbox shot_filter col-xs-12 col-sm-3 col-md-2">
+    <label>
+      {% if advanced_filters %}
+      <input type="checkbox" id="advanced_filters_chx" value="advanced_filters" checked>
+      {% else %}
+      <input type="checkbox" id="advanced_filters_chx" value="advanced_filters">
+      {% endif %}
+      Show more filters
+    </label>
+  </div>
+
+{% if advanced_filters %}
+  
+  <div class="form-group col-xs-12 col-sm-4 col-md-2">
+    <label for="team_against_filter">Team against:</label>
+    <select id="team_against_filter" class="shot_filter form-control" name="team_against">
+      <option value='All'>All</option>
+      {% for team in teams_against %}
+      {% if team == selected_team_against %}
+      <option value="{{team}}" selected>{{team}}</option>
+      {% else %}
+      <option value="{{team}}">{{team}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group col-xs-12 col-sm-5 col-md-3">
+    <label for="goalie_filter">Goalie:</label>
+    <select id="goalie_filter" class="shot_filter form-control" name="goalie">
+      <option value='All'>All</option>
+      {% for goalie in goalies %}
+      {% if goalie == selected_goalie %}
+      <option value="{{goalie}}" selected>{{goalie}}</option>
+      {% else %}
+      <option value="{{goalie}}">{{goalie}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-xs-12 col-sm-5 col-md-2">
+    <label>Team Strength:</label>
+    <div class="row">
+      <div class="checkbox-inline shot_filter col-xs-offset-1">
+        <label>
+          {% if even_checked %}
+          <input type="checkbox" value="even" id="even_chx" checked>
+          {% else %}
+          <input type="checkbox" value="even" id="even_chx">
+          {% endif %}
+          Even Strength
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="checkbox-inline shot_filter col-xs-offset-1">
+        <label>
+          {% if pp_checked %}
+          <input type="checkbox" value="pp" id="pp_chx" checked>
+          {% else %}
+          <input type="checkbox" value="pp" id="pp_chx">
+          {% endif %}
+          Powerplay
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="checkbox-inline shot_filter col-xs-offset-1">
+        <label>
+          {% if sh_checked %}
+          <input type="checkbox" value="sh" id="sh_chx" checked>
+          {% else %}
+          <input type="checkbox" value="sh" id="sh_chx">
+          {% endif %}
+          Shorthanded
+        </label>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+<div class="row">
+      <div class="form-group col-xs-12 col-sm-5 col-md-3">
+        {% if goal_checked %}
+        <label for="first_assist_filter">First assist:</label>
+        <select id="first_assist_filter" class="shot_filter form-control" name="first_assist">
+          <option value='All'>All</option>
+          {% for assister in first_assisters %}
+          {% if assister == selected_first_assister %}
+          <option value="{{assister}}" selected>{{assister}}</option>
+          {% else %}
+          <option value="{{assister}}">{{assister}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        {% endif %}
+      </div>
+
+      <div class="form-group col-xs-12 col-sm-5 col-md-3">
+        {% if goal_checked %}
+        <label for="second_assist_filter">Second assist:</label>
+        <select id="second_assist_filter" class="shot_filter form-control" name="second_assist">
+          <option value='All'>All</option>
+          {% for assister in second_assisters %}
+          {% if assister == selected_second_assister %}
+          <option value="{{assister}}" selected>{{assister}}</option>
+          {% else %}
+          <option value="{{assister}}">{{assister}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+    {% endif %}
+      </div>
+    <div class="col-xs-12 col-sm-5 col-md-3">
+      {% if block_checked %}
+      <div class="form-group">
+        <label for="blocker_filter">Blocker:</label>
+        <select id="blocker_filter" class="shot_filter form-control" name="blocker">
+          <option value='All'>All</option>
+          {% for blocker in blockers %}
+          {% if blocker == selected_blocker %}
+          <option value="{{blocker}}" selected>{{blocker}}</option>
+          {% else %}
+          <option value="{{blocker}}">{{blocker}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+    </div>
+</div>
+
+{% else %}
+</div>
+{% endif %}
+
+
+</form>

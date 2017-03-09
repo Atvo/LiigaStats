@@ -1,0 +1,24 @@
+<div id="heatmap_container" class="col-md-12 col-lg-8 col-lg-offset-2">
+	{% load staticfiles %}
+	{% if shots_array %}
+		<script>
+			var shots_array = {{ shots_array|safe }};
+			var data_array = {{ data_array|safe }};
+			var max_value = {{ max_value|safe }};
+		</script>
+		<style type="text/css" media="screen">
+			canvas, img { display:block; margin:1em auto solid black; }
+			canvas#heatmap{ background:url("{% static "images/rink_background.png" %}");
+			background-size: contain; }
+		</style>
+		<p>{{ max_value|safe }}</p>
+	{% else %}
+		<p>No Data</p>
+	{% endif %}
+	<canvas id="heatmap" width="{{heatmap_container_width}}" height="{{heatmap_container_height}}">
+	</canvas>
+	<script src="{% static "js/draw.js" %}"></script>
+	<script src="{% static "opentip/opentip.js" %}"></script>
+	<script src="{% static "opentip/adapter-jquery.js" %}"></script>
+	<link href="{% static "opentip/opentip.css" %}" rel="stylesheet" type="text/css" />
+</div>

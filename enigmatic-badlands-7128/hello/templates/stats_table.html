@@ -1,0 +1,33 @@
+<div id='stats_table'>
+	{% load staticfiles %}
+	{{ amount }}
+
+	<table id="table_id" class="display">
+		<thead>
+	        <tr>
+	        	<th>Rank</th>
+	            <th>Name</th>
+	            <th>Goals</th>
+	            <th>Saved</th>
+	            <th>Missed</th>
+	            <th>Blocked</th>
+	            <th>Total</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    	{% for player in players %}
+	        <tr>
+	        	<td></td>
+		        <td>{{ player.name }}</td>
+		        <td>{{ player.goals }}</td>
+		        <td>{{ player.saves }}</td>
+		        <td>{{ player.miss }}</td>
+		        <td>{{ player.block }}</td>
+		        <td>{{ player.total }}</td>
+	        </tr>
+	        {% endfor %}
+	    </tbody>
+	</table>
+	<img id="loading_gif" src="{% static "images/loading.gif" %}"></img>
+	{% include "heatmap.html" %}
+</div>

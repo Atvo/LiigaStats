@@ -1,0 +1,18 @@
+#stats_table {
+	position: relative;
+}
+
+#loading_gif {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	display: none;
+}
+
+#loading_gif {
+	z-index: 10;
+}
+
+body {
+  	padding-top: 70px; 
+}

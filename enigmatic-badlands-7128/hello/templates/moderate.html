@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+  <form method="POST" action="/add_match/">
+  {% csrf_token %}
+  Match ID: <input type="text" name="match_id">
+  <input type="submit" value="Submit">
+  </form>
+
+  <form method="POST" action="/add_all_matches_from_season/">
+  {% csrf_token %}
+  Season:
+  <select name="season">
+    <option value='2014-2015'>2014-2015</option>
+    <option value='2015-2016'>2015-2016</option>
+  </select>
+  <input type="submit" value="Submit">
+  </form>
+{% endblock %}
